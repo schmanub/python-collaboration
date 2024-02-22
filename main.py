@@ -16,7 +16,7 @@ def delete_task(index_num):
         del todo_list[index_num]
 
 while True:
-    user_input = input("What do you want to do, type 'add' to add a task, 'view' to view all tasks, 'mark' to mark one as completed: ")
+    user_input = input("What do you want to do, type 'add' to add a task, 'view' to view all tasks, 'mark' to mark one as completed, or 'save' to save to a file: ")
     if str(user_input) == "view":
         view_tasks()
     elif(str(user_input) == "add"):
@@ -28,3 +28,10 @@ while True:
     elif(str(user_input) == "delete"):
         user_input = input("Type the number of the task that you want to delete: ")
         delete_task(int(user_input)-1)
+    elif(str(user_input) == "save"):
+        file = open("output.txt", "a")
+        file.truncate(0)
+        file.write("TO DO LIST: " + "\n")
+        for i, task in enumerate(todo_list):
+            file.write(str(i + 1) + ") " + task + "\n")
+        file.close()
